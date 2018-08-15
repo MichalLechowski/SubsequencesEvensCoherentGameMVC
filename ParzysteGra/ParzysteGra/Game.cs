@@ -80,12 +80,12 @@ namespace ParzysteGra
                 Console.WriteLine("----------------------------------------------------------------");
                 Console.WriteLine("{0}: Wybierz podciąg spójny, parzysty. Liczby oddziel spacją.", gracz1.Name);
                 string liczbyGracz1 = "";
-                int result = 0; //niepotrzebna zmienna, wykorzystana tylko do użycia TryParse, który musi przekazać wartość przez out
+                //int result = 0; //pomocnicza zmienna do sprawdzenia czy wprowadzono liczby -> inicjalizacja możliwa w TryParse
                 gracz1PodciagCheck = false; //przechowuje info o poprawności formatu danych
                 while (!gracz1PodciagCheck)
                 {
                     liczbyGracz1 = Console.ReadLine(); //wczytaj wybór gracza 1
-                    if (int.TryParse(liczbyGracz1.Replace(" ", string.Empty), out result)) //jeśli po usunięciu przerw w stringu, da się sparsować na inta to znaczy, że wpisano same liczby. Clever :D
+                    if (int.TryParse(liczbyGracz1.Replace(" ", string.Empty), out int result)) //jeśli po usunięciu przerw w stringu, da się sparsować na inta to znaczy, że wpisano same liczby. Clever :D
                     {
                         gracz1PodciagCheck = true; //same liczby, zwróć info o poprawnych danych
                     }

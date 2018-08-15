@@ -125,7 +125,7 @@ namespace ParzysteGra
                 //nieciekawe rozwiązanie, ale działa. Optymalizacja?
             }
             gra.tabWylosowaneLiczby = zredukowanaTablica; //zamień tablicę wylosowanych liczb na nową, zredukowaną o wybrany podciąg
-        } // jest w GameS
+        } // jest w Game
 
         public bool SprawdzCzyMoznaKontynuowac(Game gra)
         {

@@ -11,13 +11,13 @@ namespace ModelGraParzysteLib
     {
         private int iloscLiczb; //musi być fullprop, bo przekazuje przez out przy TryParse
         private int maxWartosc; //musi być fullprop, bo przekazuje przez out przy TryParse
-        public int IloscLiczb { get => iloscLiczb; private set => iloscLiczb = value; }
-        public int MaxWartosc { get => maxWartosc; private set => maxWartosc = value; }
+        public int IloscLiczb { get => iloscLiczb; set => iloscLiczb = value; }
+        public int MaxWartosc { get => maxWartosc; set => maxWartosc = value; }
 
         private int[] TabWylosowaneLiczby { get; set; }
         public IList<int> TabWylosowaneLiczbyAsReadOnly => Array.AsReadOnly(TabWylosowaneLiczby);
-        public bool CzyWybranoPoprawneLiczbyDoWyrzucenia { get; private set; }
-        public bool CzySaJeszczeRuchy { get; private set; }
+        public bool CzyWybranoPoprawneLiczbyDoWyrzucenia { get; private set; } = true;
+        public bool CzySaJeszczeRuchy { get; private set; } = true;
         public bool CzyWybranoPoprawneLiczbyDoWylosowania { get; private set; }
         public bool CzyWybranoPoprawnaMaxWartoscDoWylosowania { get; private set; }
         public bool CzyWybranoPoprawnaIloscLiczbDoWylosowania { get; private set; }
@@ -64,6 +64,8 @@ namespace ModelGraParzysteLib
                 TabWylosowaneLiczby[iloscLiczb - 1] = rand.Next(MaxWartosc); // iloscLiczb-1, bo dla np. 5 elementowej tab max index 4 i min 0
                 iloscLiczb--;
             }
+
+            //TabWylosowaneLiczby = new int[7] { 8,2,5,3,1,0,0};
         }
 
         public void WyrzucWybraneLiczby(ModelPlayer gracz)
@@ -225,5 +227,6 @@ namespace ModelGraParzysteLib
                 return CzySaJeszczeRuchy;
             }
         }
+
     }
 }

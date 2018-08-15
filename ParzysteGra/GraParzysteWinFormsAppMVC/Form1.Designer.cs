@@ -29,12 +29,8 @@
         private void InitializeComponent()
         {
             this.richtxtbPoleGry = new System.Windows.Forms.RichTextBox();
-            this.labelGracz1 = new System.Windows.Forms.Label();
-            this.btnGracz1Graj = new System.Windows.Forms.Button();
-            this.txtbGracz1 = new System.Windows.Forms.TextBox();
-            this.txtbGracz2 = new System.Windows.Forms.TextBox();
-            this.btnGracz2Graj = new System.Windows.Forms.Button();
-            this.labelGracz2 = new System.Windows.Forms.Label();
+            this.btnWybierzWartosci = new System.Windows.Forms.Button();
+            this.txtbPodajWartosci = new System.Windows.Forms.TextBox();
             this.btnNowaGra = new System.Windows.Forms.Button();
             this.txtbMaxWartosc = new System.Windows.Forms.TextBox();
             this.btnPrzeslijParametry = new System.Windows.Forms.Button();
@@ -42,72 +38,41 @@
             this.txtbIloscLiczb = new System.Windows.Forms.TextBox();
             this.labelIloscLiczb = new System.Windows.Forms.Label();
             this.labelKomunikat = new System.Windows.Forms.Label();
+            this.lblPodajWartosci = new System.Windows.Forms.Label();
+            this.txtbNickGracz2 = new System.Windows.Forms.TextBox();
+            this.lblNickGracz2 = new System.Windows.Forms.Label();
+            this.txtbNickGracz1 = new System.Windows.Forms.TextBox();
+            this.lblNickGracz1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // richtxtbPoleGry
             // 
+            this.richtxtbPoleGry.HideSelection = false;
             this.richtxtbPoleGry.Location = new System.Drawing.Point(12, 12);
             this.richtxtbPoleGry.Name = "richtxtbPoleGry";
             this.richtxtbPoleGry.Size = new System.Drawing.Size(776, 120);
             this.richtxtbPoleGry.TabIndex = 0;
             this.richtxtbPoleGry.Text = "";
             // 
-            // labelGracz1
+            // btnWybierzWartosci
             // 
-            this.labelGracz1.AutoSize = true;
-            this.labelGracz1.Location = new System.Drawing.Point(406, 192);
-            this.labelGracz1.Name = "labelGracz1";
-            this.labelGracz1.Size = new System.Drawing.Size(47, 13);
-            this.labelGracz1.TabIndex = 1;
-            this.labelGracz1.Text = "Gracz 1:";
-            this.labelGracz1.Visible = false;
+            this.btnWybierzWartosci.Location = new System.Drawing.Point(401, 231);
+            this.btnWybierzWartosci.Name = "btnWybierzWartosci";
+            this.btnWybierzWartosci.Size = new System.Drawing.Size(100, 23);
+            this.btnWybierzWartosci.TabIndex = 3;
+            this.btnWybierzWartosci.Text = "Wybierz";
+            this.btnWybierzWartosci.UseVisualStyleBackColor = true;
+            this.btnWybierzWartosci.Visible = false;
+            this.btnWybierzWartosci.Click += new System.EventHandler(this.btnWybierzWartosci_Click);
             // 
-            // btnGracz1Graj
+            // txtbPodajWartosci
             // 
-            this.btnGracz1Graj.Location = new System.Drawing.Point(406, 231);
-            this.btnGracz1Graj.Name = "btnGracz1Graj";
-            this.btnGracz1Graj.Size = new System.Drawing.Size(100, 23);
-            this.btnGracz1Graj.TabIndex = 3;
-            this.btnGracz1Graj.Text = "Wybierz";
-            this.btnGracz1Graj.UseVisualStyleBackColor = true;
-            this.btnGracz1Graj.Visible = false;
-            this.btnGracz1Graj.Click += new System.EventHandler(this.btnGracz1Graj_Click);
-            // 
-            // txtbGracz1
-            // 
-            this.txtbGracz1.Location = new System.Drawing.Point(406, 208);
-            this.txtbGracz1.Name = "txtbGracz1";
-            this.txtbGracz1.Size = new System.Drawing.Size(100, 20);
-            this.txtbGracz1.TabIndex = 4;
-            this.txtbGracz1.Visible = false;
-            // 
-            // txtbGracz2
-            // 
-            this.txtbGracz2.Location = new System.Drawing.Point(512, 208);
-            this.txtbGracz2.Name = "txtbGracz2";
-            this.txtbGracz2.Size = new System.Drawing.Size(100, 20);
-            this.txtbGracz2.TabIndex = 7;
-            this.txtbGracz2.Visible = false;
-            // 
-            // btnGracz2Graj
-            // 
-            this.btnGracz2Graj.Location = new System.Drawing.Point(512, 231);
-            this.btnGracz2Graj.Name = "btnGracz2Graj";
-            this.btnGracz2Graj.Size = new System.Drawing.Size(100, 23);
-            this.btnGracz2Graj.TabIndex = 6;
-            this.btnGracz2Graj.Text = "Wybierz";
-            this.btnGracz2Graj.UseVisualStyleBackColor = true;
-            this.btnGracz2Graj.Visible = false;
-            // 
-            // labelGracz2
-            // 
-            this.labelGracz2.AutoSize = true;
-            this.labelGracz2.Location = new System.Drawing.Point(512, 192);
-            this.labelGracz2.Name = "labelGracz2";
-            this.labelGracz2.Size = new System.Drawing.Size(47, 13);
-            this.labelGracz2.TabIndex = 5;
-            this.labelGracz2.Text = "Gracz 2:";
-            this.labelGracz2.Visible = false;
+            this.txtbPodajWartosci.Location = new System.Drawing.Point(401, 208);
+            this.txtbPodajWartosci.Name = "txtbPodajWartosci";
+            this.txtbPodajWartosci.Size = new System.Drawing.Size(100, 20);
+            this.txtbPodajWartosci.TabIndex = 4;
+            this.txtbPodajWartosci.Visible = false;
+            this.txtbPodajWartosci.TextChanged += new System.EventHandler(this.txtbPodajWartosci_TextChanged);
             // 
             // btnNowaGra
             // 
@@ -126,6 +91,7 @@
             this.txtbMaxWartosc.Size = new System.Drawing.Size(100, 20);
             this.txtbMaxWartosc.TabIndex = 11;
             this.txtbMaxWartosc.Visible = false;
+            this.txtbMaxWartosc.TextChanged += new System.EventHandler(this.txtbMaxWartosc_TextChanged);
             // 
             // btnPrzeslijParametry
             // 
@@ -155,6 +121,7 @@
             this.txtbIloscLiczb.Size = new System.Drawing.Size(100, 20);
             this.txtbIloscLiczb.TabIndex = 13;
             this.txtbIloscLiczb.Visible = false;
+            this.txtbIloscLiczb.TextChanged += new System.EventHandler(this.txtbIloscLiczb_TextChanged);
             // 
             // labelIloscLiczb
             // 
@@ -175,11 +142,63 @@
             this.labelKomunikat.TabIndex = 14;
             this.labelKomunikat.Visible = false;
             // 
+            // lblPodajWartosci
+            // 
+            this.lblPodajWartosci.AutoSize = true;
+            this.lblPodajWartosci.Location = new System.Drawing.Point(401, 192);
+            this.lblPodajWartosci.Name = "lblPodajWartosci";
+            this.lblPodajWartosci.Size = new System.Drawing.Size(79, 13);
+            this.lblPodajWartosci.TabIndex = 1;
+            this.lblPodajWartosci.Text = "Podaj wartości:";
+            this.lblPodajWartosci.Visible = false;
+            // 
+            // txtbNickGracz2
+            // 
+            this.txtbNickGracz2.Location = new System.Drawing.Point(255, 167);
+            this.txtbNickGracz2.Name = "txtbNickGracz2";
+            this.txtbNickGracz2.Size = new System.Drawing.Size(100, 20);
+            this.txtbNickGracz2.TabIndex = 18;
+            this.txtbNickGracz2.Text = "Gracz2";
+            this.txtbNickGracz2.Visible = false;
+            // 
+            // lblNickGracz2
+            // 
+            this.lblNickGracz2.AutoSize = true;
+            this.lblNickGracz2.Location = new System.Drawing.Point(255, 151);
+            this.lblNickGracz2.Name = "lblNickGracz2";
+            this.lblNickGracz2.Size = new System.Drawing.Size(70, 13);
+            this.lblNickGracz2.TabIndex = 17;
+            this.lblNickGracz2.Text = "Nick gracz 2:";
+            this.lblNickGracz2.Visible = false;
+            // 
+            // txtbNickGracz1
+            // 
+            this.txtbNickGracz1.Location = new System.Drawing.Point(149, 167);
+            this.txtbNickGracz1.Name = "txtbNickGracz1";
+            this.txtbNickGracz1.Size = new System.Drawing.Size(100, 20);
+            this.txtbNickGracz1.TabIndex = 16;
+            this.txtbNickGracz1.Text = "Gracz1";
+            this.txtbNickGracz1.Visible = false;
+            // 
+            // lblNickGracz1
+            // 
+            this.lblNickGracz1.AutoSize = true;
+            this.lblNickGracz1.Location = new System.Drawing.Point(149, 151);
+            this.lblNickGracz1.Name = "lblNickGracz1";
+            this.lblNickGracz1.Size = new System.Drawing.Size(70, 13);
+            this.lblNickGracz1.TabIndex = 15;
+            this.lblNickGracz1.Text = "Nick gracz 1:";
+            this.lblNickGracz1.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 266);
+            this.Controls.Add(this.txtbNickGracz2);
+            this.Controls.Add(this.lblNickGracz2);
+            this.Controls.Add(this.txtbNickGracz1);
+            this.Controls.Add(this.lblNickGracz1);
             this.Controls.Add(this.labelKomunikat);
             this.Controls.Add(this.txtbIloscLiczb);
             this.Controls.Add(this.labelIloscLiczb);
@@ -187,12 +206,9 @@
             this.Controls.Add(this.btnPrzeslijParametry);
             this.Controls.Add(this.labelMaxWartosc);
             this.Controls.Add(this.btnNowaGra);
-            this.Controls.Add(this.txtbGracz2);
-            this.Controls.Add(this.btnGracz2Graj);
-            this.Controls.Add(this.labelGracz2);
-            this.Controls.Add(this.txtbGracz1);
-            this.Controls.Add(this.btnGracz1Graj);
-            this.Controls.Add(this.labelGracz1);
+            this.Controls.Add(this.txtbPodajWartosci);
+            this.Controls.Add(this.btnWybierzWartosci);
+            this.Controls.Add(this.lblPodajWartosci);
             this.Controls.Add(this.richtxtbPoleGry);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -204,12 +220,8 @@
         #endregion
 
         private System.Windows.Forms.RichTextBox richtxtbPoleGry;
-        private System.Windows.Forms.Label labelGracz1;
-        private System.Windows.Forms.Button btnGracz1Graj;
-        private System.Windows.Forms.TextBox txtbGracz1;
-        private System.Windows.Forms.TextBox txtbGracz2;
-        private System.Windows.Forms.Button btnGracz2Graj;
-        private System.Windows.Forms.Label labelGracz2;
+        private System.Windows.Forms.Button btnWybierzWartosci;
+        private System.Windows.Forms.TextBox txtbPodajWartosci;
         private System.Windows.Forms.Button btnNowaGra;
         private System.Windows.Forms.TextBox txtbMaxWartosc;
         private System.Windows.Forms.Button btnPrzeslijParametry;
@@ -217,6 +229,11 @@
         private System.Windows.Forms.TextBox txtbIloscLiczb;
         private System.Windows.Forms.Label labelIloscLiczb;
         private System.Windows.Forms.Label labelKomunikat;
+        private System.Windows.Forms.Label lblPodajWartosci;
+        private System.Windows.Forms.TextBox txtbNickGracz2;
+        private System.Windows.Forms.Label lblNickGracz2;
+        private System.Windows.Forms.TextBox txtbNickGracz1;
+        private System.Windows.Forms.Label lblNickGracz1;
     }
 }
 
