@@ -27,6 +27,7 @@ namespace ModelGraParzysteLib
 
         public bool WybierzIloscLiczbDoWylosowania(int iloscLiczb)
         {
+            //w przypadku WinForms zawsze true, bo jest walidacja formularza
             this.iloscLiczb = iloscLiczb;
             if (IloscLiczb < 3)
             {
@@ -36,14 +37,15 @@ namespace ModelGraParzysteLib
             {
                 CzyWybranoPoprawnaIloscLiczbDoWylosowania = true;
             }
-                return CzyWybranoPoprawnaIloscLiczbDoWylosowania;
+            return CzyWybranoPoprawnaIloscLiczbDoWylosowania;
         }
 
         public bool WybierzMaxWartoscLosowanejLiczby(int maxWartosc)
         {
+            //w przypadku WinForms zawsze true, bo jest walidacja formularza
             this.maxWartosc = maxWartosc;
             this.maxWartosc += 1; //trzeba zwiększyć o 1, bo metoda Next klasy Random określa max wartość losowanej liczby, ale bez jej uwzględnienia
-            if (MaxWartosc <= 2) //czyli przy np. max wartość 2 losowane liczby będą 0 lub 1.
+            if (MaxWartosc <= 2)
             {
                 CzyWybranoPoprawnaMaxWartoscDoWylosowania = false;
             }
@@ -57,15 +59,15 @@ namespace ModelGraParzysteLib
         public void LosujCiag()
         {
             Random rand = new Random();
-            TabWylosowaneLiczby = new int[IloscLiczb]; //tablica o długosci rownej ilosc liczb np. 5 elementow to 0,1,2,3,4
+            TabWylosowaneLiczby = new int[IloscLiczb];
 
-            while (IloscLiczb > 0) //przelatuje po wszystkich elementach tablicy
+            while (IloscLiczb > 0)
             {
-                TabWylosowaneLiczby[iloscLiczb - 1] = rand.Next(MaxWartosc); // iloscLiczb-1, bo dla np. 5 elementowej tab max index 4 i min 0
+                TabWylosowaneLiczby[iloscLiczb - 1] = rand.Next(MaxWartosc);
                 iloscLiczb--;
             }
 
-            //TabWylosowaneLiczby = new int[7] { 8,2,5,3,1,0,0};
+            //TabWylosowaneLiczby = new int[11] { 6, 6, 0, 8, 8, 3, 1, 1, 7, 4, 2 }; //podanie tablicy z ręki
         }
 
         public void WyrzucWybraneLiczby(ModelPlayer gracz)
@@ -98,16 +100,17 @@ namespace ModelGraParzysteLib
                         j--;
                     }
                 }
-                //nieciekawe rozwiązanie, ale działa. Optymalizacja?
+                //nieciekawe rozwiązanie, ale działa. Optymalizacja wskazana?
             }
-            TabWylosowaneLiczby = zredukowanaTablica; //zamień tablicę wylosowanych liczb na nową, zredukowaną o wybrany podciąg
+            TabWylosowaneLiczby = zredukowanaTablica;
         }
 
         public bool SprawdzCzyWybranoPoprawneLiczby(ModelPlayer gracz)
         {
+            gracz.indexyDoWyrzucenia.Clear(); //wyczyść listę indexów przed każdym wykonaniem metody
             int suma = 0;
 
-            foreach (var item in gracz.WybranyPodciagSpojny) //sumuje wybrany podciąg
+            foreach (var item in gracz.WybranyPodciagSpojny)
             {
                 suma += item;
             }
@@ -117,7 +120,7 @@ namespace ModelGraParzysteLib
             //oraz sprawdza czy długość podciągu nie jest równa długości całego ciągu, co by oznaczało,
             //że wybrano cały ciąg, a nie podciąg co jest niedozwolone
             {
-                for (int i = 0, j = 0; j < gracz.WybranyPodciagSpojny.Length; i++) //przeleć po tablicy wybranego podciagu spojnego
+                for (int i = 0, j = 0; j < gracz.WybranyPodciagSpojny.Length; i++)
                 {
                     if (TabWylosowaneLiczby.Length == i)
                     {
@@ -125,10 +128,10 @@ namespace ModelGraParzysteLib
                         break;
                     }
 
-                    if (gracz.WybranyPodciagSpojny[j] == TabWylosowaneLiczby[i]) //sprawdz czy j-ty el. podciągu jest równy i-ty el. wylosowanych liczb
+                    if (gracz.WybranyPodciagSpojny[j] == TabWylosowaneLiczby[i])
                     {
                         CzyWybranoPoprawneLiczbyDoWyrzucenia = true; //śledzi poprawność liczb
-                        gracz.indexyDoWyrzucenia.Add(i); //wrzuć indeks do listy indeksów do wyrzucenia z wylosowanych liczb
+                        gracz.indexyDoWyrzucenia.Add(i); //wrzuć indeks do listy indeksów do wyrzucenia
                         j++; //przejdź do następnego elementu podciągu
                     }
 
@@ -141,7 +144,7 @@ namespace ModelGraParzysteLib
                         else
                         {
                             i = gracz.indexyDoWyrzucenia.Last();
-                            //pobierz ostatni element("index") z listy indeksów do wyrzucenia i ustaw go jako index elementu wylosowanego ciągu
+                            //pobierz ostatni element("index") z listy indeksów do wyrzucenia i ustaw go jako index elementu wylosowanego ciągu.
                             //powoduje to, że omijamy element, który był prawidłowy, ale nie był szukany np. wybrany podciąg to 2 2,
                             //a wylosowane liczby to: 2 3 2 2, pierwsza 2 jest poprawna i zostanie wybrana do usunięcia,
                             //ale zostanie wyrzucona (list_clear) i będzie szukana "inna" dwójka, następna w kolejności
@@ -157,7 +160,6 @@ namespace ModelGraParzysteLib
                     }
                 }
             }
-
             else
             {
                 CzyWybranoPoprawneLiczbyDoWyrzucenia = false; //jak podciąg jest niepoprawny, czyli jest parzysty, a nie jest spójny to koniec gry
@@ -188,7 +190,7 @@ namespace ModelGraParzysteLib
                     if (tab[i] % 2 == 0)
                     {
                         CzySaJeszczeRuchy = true;
-                        goto GameOn;
+                        goto GameOn; //nie powinno się skakać, ale nie mogę wyjść returnem/breakiem w odpowiednie miejsce
                     }
                     else
                     {
@@ -204,11 +206,11 @@ namespace ModelGraParzysteLib
                     suma = 0; //wyzeruj sume po przejściu do tworzenia kolejnych podciągów zaczynająć od kolejnego elementu tablicy (przesuwamy się o 1 w prawo)
                     suma += tab[i]; //dodaj wartość tego elementu do sumy (jednorazowo, więć musi być przed wewnętrznym for)
                     for (int j = i + 1; j < tab.Length - 1 + (i == 0 ? +0 : +1); j++)
-                    // :=D Yyy, dodawanie do sumy kolejnych wyrazów po prawo od 'i' tworząc podciągi najpierw 2-el, 3-el itd.
+                    // :=D Yyyyyy, dodawanie do sumy kolejnych wyrazów po prawo od 'i' tworząc podciągi najpierw 2-el, 3-el itd.
                     // aż do elementu PRZEDostatniego w przypadku gdy i=0, ponieważ wtedy byłby to cały ciąg, a nie podciąg!
                     // lub aż do elementu ostatniego gdy i != 0, wtedy można iterować do końca.
-                    // do sprawdzenia wartości i wykorzystano wyrażenie trójargumentowe condition ? true_expression : false_expression
-                    // co sumowanie sprawdzenie czy podciąg nie jest parzysty, jak jest to kończymy i gramy dalej,
+                    // Do sprawdzenia wartości i wykorzystano wyrażenie trójargumentowe.
+                    // Co sumowanie sprawdzenie czy podciąg nie jest parzysty, jak jest to kończymy i gramy dalej,
                     // bo jest jeszcze co wybierać.
                     {
                         if ((suma += tab[j]) % 2 == 0)
@@ -227,6 +229,5 @@ namespace ModelGraParzysteLib
                 return CzySaJeszczeRuchy;
             }
         }
-
     }
 }

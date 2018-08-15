@@ -15,7 +15,6 @@ namespace GraParzysteWinFormsAppMVC
     {
         private ModelGame gra;
         bool CzyPierwszyGracz = true;
-
         private ErrorProvider chosenValuesErrorProvider;
         private ErrorProvider maxValueInSequenceErrorProvider;
         private ErrorProvider amountOfValuesInSequenceErrorProvider;
@@ -108,9 +107,9 @@ namespace GraParzysteWinFormsAppMVC
             txtbNickGracz2.Visible = false;
 
             labelMaxWartosc.Visible = false;
+            txtbMaxWartosc.Visible = false;
             labelIloscLiczb.Visible = false;
             txtbIloscLiczb.Visible = false;
-            txtbMaxWartosc.Visible = false;
 
             btnPrzeslijParametry.Visible = false;
         }
@@ -135,7 +134,6 @@ namespace GraParzysteWinFormsAppMVC
 
         private void SprawdzPoprawnoscLiczbICzyMoznaGracDalej(ModelPlayer gracz)
         {
-            //labelKomunikat.Text = $"{gracz.Name}: Wybierz podciąg spójny, parzysty. Liczby oddziel spacją.";
             string liczby = txtbPodajWartosci.Text;
 
             gracz.WybierzLiczby(liczby);
@@ -180,9 +178,13 @@ namespace GraParzysteWinFormsAppMVC
                 richtxtbPoleGry.Text = ("KONIEC GRY, WYGRYWA: " + gra.Wygrany.ToUpper());
                 btnWybierzWartosci.Enabled = false;
                 labelKomunikat.Text = "";
+
+                lblPodajWartosci.Visible = false;
+                txtbPodajWartosci.Visible = false;
+                btnWybierzWartosci.Visible = false;
+                labelKomunikat.Visible = false;
             }
         }
-
 
         #region DataValidationHandlers
         private bool ValuesValid()

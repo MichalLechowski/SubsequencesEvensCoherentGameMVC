@@ -73,14 +73,13 @@ namespace GraParzysteConsoleAppMVC
                 Console.WriteLine("----------------------------------------------------------------");
                 Console.WriteLine("{0}: Wybierz podciąg spójny, parzysty. Liczby oddziel spacją.", gra.Gracz1.Name);
                 string liczbyGracz1 = "";
-                int result = 0; //niepotrzebna zmienna, wykorzystana tylko do użycia TryParse, który musi przekazać wartość przez out
                 gra.Gracz1.PodciagCheck = false; //przechowuje info o poprawności formatu danych
                 while (!gra.Gracz1.PodciagCheck)
                 {
-                    liczbyGracz1 = Console.ReadLine(); //wczytaj wybór gracza 1
-                    if (int.TryParse(liczbyGracz1.Replace(" ", string.Empty), out result)) //jeśli po usunięciu przerw w stringu, da się sparsować na inta to znaczy, że wpisano same liczby. Clever :D
+                    liczbyGracz1 = Console.ReadLine(); 
+                    if (int.TryParse(liczbyGracz1.Replace(" ", string.Empty), out int result)) //jeśli po usunięciu przerw w stringu, da się sparsować na inta to znaczy, że wpisano same liczby. Clever :D
                     {
-                        gra.Gracz1.PodciagCheck = true; //same liczby, zwróć info o poprawnych danych
+                        gra.Gracz1.PodciagCheck = true; //same liczby, zwróć true, info o poprawnych danych
                     }
                     else
                     {
@@ -96,20 +95,20 @@ namespace GraParzysteConsoleAppMVC
                 gra.SprawdzCzyWybranoPoprawneLiczby(gra.Gracz1);
                 gra.WyrzucWybraneLiczby(gra.Gracz1);
                 Console.WriteLine("Aktualna postać ciągu: ");
-
-                foreach (var item in gra.TabWylosowaneLiczbyAsReadOnly) //wypisuje nowy ciąg po redukcji o wybrany podciąg
+                
+                foreach (var item in gra.TabWylosowaneLiczbyAsReadOnly) //zredukowany ciąg
                 {
                     Console.WriteLine(item + " ");
                 }
                 Console.WriteLine("----------------------------------------------------------------");
 
-                if (!(gra.SprawdzCzyMoznaKontynuowac(gra.Gracz1))) //sprawdza czy są jeszcze dopuszczalne ruchy w grze
+                if (!(gra.SprawdzCzyMoznaKontynuowac(gra.Gracz1)))
                 {
                     gra.Wygrany = gra.Gracz1.Name;
                 }
 
 
-                if (gra.CzySaJeszczeRuchy && gra.CzyWybranoPoprawneLiczbyDoWyrzucenia) //jeśli są jeszcze ruchy i gracz1 wybrał poprawne liczby to przejdź do 2 gracza
+                if (gra.CzySaJeszczeRuchy && gra.CzyWybranoPoprawneLiczbyDoWyrzucenia)
                 {
                     Console.WriteLine("{0}: Wybierz podciąg spójny, parzysty. Liczby oddziel spacją.", gra.Gracz2.Name);
                     string liczbyGracz2 = "";
@@ -146,10 +145,10 @@ namespace GraParzysteConsoleAppMVC
                         gra.Wygrany = gra.Gracz2.Name;
                     }
                 }
-            } while (gra.CzyWybranoPoprawneLiczbyDoWyrzucenia && gra.CzySaJeszczeRuchy); //powtarzaj dopóki wprowadzane są poprawne liczby oraz są dalsze ruchy
+            } while (gra.CzyWybranoPoprawneLiczbyDoWyrzucenia && gra.CzySaJeszczeRuchy);
 
             if (gra.CzyWybranoPoprawneLiczbyDoWyrzucenia == false)
-            { //wyrzuca błąd kiedy wartości są błędne np. nieparzyste, niespójne, w ogóle nie istnieją itp.
+            { //wyrzuca błąd kiedy wartości są błędne np. nieparzyste, niespójne, w ogóle nie istnieją
                 gra.Wygrany = "Przegrałeś! \nWybrany podciąg nie spełnia warunków: parzystości, spójności lub nie istnieje.";
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("KONIEC GRY: " + gra.Wygrany.ToUpper());

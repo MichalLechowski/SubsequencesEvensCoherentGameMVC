@@ -20,7 +20,8 @@ namespace GraParzysteConsoleAppMVC
 
         public void WypiszOpisGry()
         {
-            Console.WriteLine("Gra polega na wyborze podciągów spójnych parzystych.\nPrzegrywa ten kto nie ma dalszych zgodnych ruchów.");
+            Console.WriteLine("Gra polega na wyborze podciągów spójnych parzystych." +
+                              "\nPrzegrywa ten kto nie ma dalszych zgodnych ruchów.");
             Console.WriteLine();
         }
     }
